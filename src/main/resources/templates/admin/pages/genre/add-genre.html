@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Genre</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/genre.js}"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <h2>Add a genre</h2>
+            <form id="add-genre-form">
+                <div class="form-group mb-2">
+                    <label for="genreName">Genre:</label>
+                    <input required="required" type="text" name="genreName" class="form-control" id="genreName">
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

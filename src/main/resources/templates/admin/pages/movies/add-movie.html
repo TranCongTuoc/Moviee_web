@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Movie</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/movie.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container text-black opacity-80" id="add-movie">
+        <h3>Add New Movie</h3>
+        <form id="add-movie-form">
+            <div class="form-group">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Movie Name" required="required">
+                <label for="description" class="form-label mt-3">Description</label>
+                <textarea class="form-control" rows="3" name="description" id="description" placeholder="Description" required="required"></textarea>
+                <label for="releaseDate" class="form-label mt-3">Release Date</label>
+                <input type="date" class="form-control" name="releaseDate" id="releaseDate" placeholder="Release Date" required="required"/>
+                <label for="duration" class="form-label mt-3">Duration</label>
+                <input type="number" class="form-control" name="duration" id="duration" placeholder="Duration" required="required"/>
+                <label for="trailer" class="form-label mt-3">Trailer</label>
+                <input type="url" class="form-control" name="trailer" id="trailer" placeholder="Trailer" required="required"/>
+                <label for="genre-checked" class="form-label mt-3">Genre</label>
+                <select class="form-control" id="genre-checked" name="genre-checked" required="required">
+                    <option selected disabled>select</option>
+                    <th:block th:each="genre : ${genres}">
+                        <option
+                                th:value="${genre.genreId}"
+                                th:data-name="${genre.genreName}"
+                                th:text="${genre.genreName}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

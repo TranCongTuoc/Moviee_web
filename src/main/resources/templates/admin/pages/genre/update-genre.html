@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/genre.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <h2>Update a genre</h2>
+        <form id="update-genre-form">
+            <div class="form-group mb-2">
+                <label for="genreName">Genre:</label>
+                <input type="hidden" th:value="${genre.genreId}" name="genreId">
+                <input required="required" th:value="${genre.genreName}" type="text"
+                       name="genreName" class="form-control" id="genreName">
+            </div>
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

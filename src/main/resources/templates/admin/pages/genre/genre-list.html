@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Genre List</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/genre.js}"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="container">
+            <button type="button" class="btn btn-primary mb-2 ms-auto"
+                    onclick="window.location.href='/admin/genre/add'">Add Genre</button>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th  style="width: 100px">Actives</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="genre, i : ${genres}">
+                        <td th:text="${i.index + 1}"></td>
+                        <td th:text="${genre.genreName}"></td>
+                        <td >
+                            <form th:action="@{/admin/genre/update}" method="post" style="display:inline;">
+                                <input type="hidden" name="genreId" th:value="${genre.genreId}" />
+                                <button type="submit" class="icon-button btn-primary">
+                                    <i class="fas fa-edit"></i><span></span>
+                                </button>
+                            </form>
+                            <form id="delete-genre-form" style="display:inline;">
+                                <input type="hidden" name="genreId" th:value="${genre.genreId}"/>
+                                <button type="submit" class="icon-button btn-primary">
+                                    <i class="fas fa-trash"></i><span></span>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

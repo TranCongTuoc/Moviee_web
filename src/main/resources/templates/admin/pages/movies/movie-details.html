@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Detail</title>
+    <link rel="stylesheet" th:href="@{/css/movie-detail.css}">
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/movie.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ah-container">
+        <div class="info-movie">
+            <h1 class="heading_movie">Acro Trip</h1>
+            <div class="head ah-frame-bg">
+                <div class="first">
+                    <img src="https://animehay.de//upload/poster/4155.jpg" alt="Acro Trip">
+                </div>
+                <div class="last">
+                    <div class="list_cate">
+                        <div>Thể loại</div>
+                        <div>
+                            <a href="#" th:text="${movie.genre.genreName}">Anime</a>
+                        </div>
+                    </div>
+                    <div class="update_time">
+                        <div>Phát hành</div>
+                        <div th:text="${movie.releaseDate}"></div>
+                    </div>
+                    <div class="duration">
+                        <div>Thời lượng</div>
+                        <div th:text="${movie.duration} + ' Tập'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="list_episode ah-frame-bg">
+                    <div class="heading flex flex-space-auto fw-700">
+                        <span>Danh sách tập</span>
+                        <a th:href="@{/admin/episode/add(movieId=${movie.movieId})}" class="ms-auto me-1" style="line-height: 0.5; padding-left: 5px;">
+                            <i class="fa-solid fa-circle-plus text-primary"></i>
+                        </a>
+                        <span id="newest-ep-is-readed" class="fs-13"></span>
+                    </div>
+                    <div class="list-item-episode scroll-bar" th:each="episode, i : ${movie.episodes}">
+                        <a href="#">
+                            <span th:text="${episode.episode}"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="desc ah-frame-bg">
+                    <div>
+                        <h2 class="heading">
+                            Nội dung
+                        </h2>
+                    </div>
+                    <div th:text="${movie.description}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

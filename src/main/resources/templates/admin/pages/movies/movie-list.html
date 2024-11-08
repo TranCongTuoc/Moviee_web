@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="admin/layout"
+	xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie List</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/movie.js}"></script>
+</head>
+<body>
+    <div layout:fragment="content">
+        <button type="button" class="btn btn-primary mb-2 ms-auto"
+                onclick="window.location.href='/admin/movie/add'">Add Movie</button>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Release Date</th>
+                <th>Genre</th>
+                <th style="width: 150px">Actives</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="movie, i : ${movies}">
+                <td th:text="${i.index + 1}"></td>
+                <td th:text="${movie.title}"></td>
+                <td th:text="${movie.releaseDate}"></td>
+                <td th:text="${movie.genre.genreName}"></td>
+                <td >
+                    <form th:action="@{/admin/movie/details}" method="get" style="display:inline;">
+                        <input type="hidden" name="movieId" th:value="${movie.movieId}" />
+                        <button type="submit" class="icon-button btn-primary">
+                            <i class="fas fa-circle-info"></i><span></span>
+                        </button>
+                    </form>
+                    <form th:action="@{/admin/movie/update}" method="post" style="display:inline;">
+                        <input type="hidden" name="movieId" th:value="${movie.movieId}" />
+                        <button type="submit" class="icon-button btn-primary">
+                            <i class="fas fa-edit"></i><span></span>
+                        </button>
+                    </form>
+                    <form id="delete-movie-form" style="display:inline;">
+                        <input type="hidden" name="movieId" th:value="${movie.movieId}"/>
+                        <button type="submit" class="icon-button btn-primary">
+                            <i class="fas fa-trash"></i><span></span>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

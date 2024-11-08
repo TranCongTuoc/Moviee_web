@@ -1,0 +1,25 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: filmx
+  datasource:
+    url: "jdbc:sqlserver://localhost:1433;databaseName=filmx;encrypt=true;trustServerCertificate=true;"
+    username: "sa"
+    password: "123456"
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+server:
+  port: 8080
+api:
+  security:
+    token:
+      secret: "eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTczMDczNjA0MSwiaWF0IjoxNzMwNzM2MDQxfQ.IaTHGkd3Wy1KKM4pNfrzsB4On1PfzDj79TzstpAPFXs"

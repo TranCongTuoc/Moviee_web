@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="admin/layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Episode</title>
+    <th:block th:with="includeLayoutJs=${false}"></th:block>
+    <script th:src="@{/js/episode.js}"></script>
+</head>
+<style>
+    .movie-file-container {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 20px;
+    }
+</style>
+<body>
+<div layout:fragment="content">
+    <div class="container text-black opacity-80" id="add-episode">
+        <h3>Add New Movie</h3>
+        <form id="add-episode-form">
+            <div class="form-group">
+                <label for="episode" class="form-label">Episode</label>
+                <input type="text" class="form-control" id="episode" name="episode" placeholder="Enter Episode" required="required"/>
+                <label for="title" class="form-label mt-3">Title</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title" />
+                <label for="releaseDate" class="form-label mt-3">Release Date</label>
+                <input type="date" class="form-control" name="releaseDate" id="releaseDate" placeholder="Release Date" required="required"/>
+                <label for="duration" class="form-label mt-3">Duration</label>
+                <input type="number" class="form-control" name="duration" id="duration" placeholder="Duration" required="required"/>
+                <label for="movieFile" class="form-label mt-3">Movie File</label>
+                <input type="file" class="form-control-file" id="movieFile" name="movieFile" required="required"
+                    accept=".mp4, .mvk, .avi" onchange=""/>
+                <div class="movie-file-container">
+                    <video width="100%" controls id="video-here"></video>
+                </div>
+                <input type="hidden" id="movieId" name="movieId" th:value="${movieId}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
